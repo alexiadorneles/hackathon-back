@@ -1,7 +1,7 @@
 package br.com.hackathon.mapper.usuario;
 
 import br.com.hackathon.dto.usuario.UsuarioCadastroDto;
-import br.com.hackathon.model.User;
+import br.com.hackathon.domain.User;
 
 /**
  * @author alexiadorneles
@@ -17,8 +17,7 @@ public class UsuarioMapper {
 				.email(cadastroDto.getEmail())
 				.lastName(cadastroDto.getLastName())
 				.firstName(cadastroDto.getFirstName())
-				.idGoogle(cadastroDto.getGoogleId())
-				.password(cadastroDto.generatePassword())
+				.password(cadastroDto.getPassword())
 				.build();
 	}
 

@@ -1,10 +1,6 @@
 package br.com.hackathon.dto.usuario;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @author alexiadorneles
@@ -18,8 +14,6 @@ import lombok.Setter;
 @Builder
 public class UsuarioCadastroDto {
 
-	private String googleId;
-
 	private String photo;
 
 	private String email;
@@ -28,7 +22,6 @@ public class UsuarioCadastroDto {
 
 	private String lastName;
 
-	public String generatePassword() {
-		return this.email.concat("PASS").concat(this.googleId);
-	}
+	private String password;
+
 }

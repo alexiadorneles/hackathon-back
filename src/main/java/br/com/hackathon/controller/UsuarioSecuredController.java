@@ -1,7 +1,7 @@
 package br.com.hackathon.controller;
 
 import br.com.hackathon.dto.usuario.UsuarioCadastroDto;
-import br.com.hackathon.model.User;
+import br.com.hackathon.domain.User;
 import br.com.hackathon.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -2,7 +2,7 @@ package br.com.hackathon.configuration.security;
 
 import br.com.hackathon.dto.login.LoginResponseDto;
 import br.com.hackathon.dto.usuario.UsuarioCadastroDto;
-import br.com.hackathon.model.User;
+import br.com.hackathon.domain.User;
 import br.com.hackathon.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -40,7 +40,7 @@ public class AuthenticationService {
         Authentication authentication = this.authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         user.getEmail(),
-                        cadastroDto.generatePassword()
+                        cadastroDto.getPassword()
                 )
         );
 

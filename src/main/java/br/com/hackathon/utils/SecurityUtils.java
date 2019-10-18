@@ -1,7 +1,7 @@
 package br.com.hackathon.utils;
 
 import br.com.hackathon.exception.HackathonException;
-import br.com.hackathon.model.User;
+import br.com.hackathon.domain.User;
 
 import java.util.Objects;
 

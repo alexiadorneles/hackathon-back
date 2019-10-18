@@ -1,6 +1,6 @@
 package br.com.hackathon.service;
 
-import br.com.hackathon.model.User;
+import br.com.hackathon.domain.User;
 import br.com.hackathon.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;

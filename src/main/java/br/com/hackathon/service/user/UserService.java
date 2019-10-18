@@ -1,7 +1,7 @@
 package br.com.hackathon.service.user;
 
 import br.com.hackathon.dto.usuario.UsuarioCadastroDto;
-import br.com.hackathon.model.User;
+import br.com.hackathon.domain.User;
 
 import java.util.List;
 

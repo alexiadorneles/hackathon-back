@@ -1,6 +1,6 @@
 package br.com.hackathon.configuration.security;
 
-import br.com.hackathon.model.User;
+import br.com.hackathon.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

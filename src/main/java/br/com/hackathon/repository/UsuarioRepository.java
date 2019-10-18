@@ -1,6 +1,6 @@
 package br.com.hackathon.repository;
 
-import br.com.hackathon.model.User;
+import br.com.hackathon.domain.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

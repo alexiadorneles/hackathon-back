@@ -2,7 +2,7 @@ package br.com.hackathon.service.user;
 
 import br.com.hackathon.dto.usuario.UsuarioCadastroDto;
 import br.com.hackathon.mapper.usuario.UsuarioMapper;
-import br.com.hackathon.model.User;
+import br.com.hackathon.domain.User;
 import br.com.hackathon.repository.UsuarioRepository;
 import br.com.hackathon.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;

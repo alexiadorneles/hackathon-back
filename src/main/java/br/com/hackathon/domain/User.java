@@ -1,27 +1,15 @@
-package br.com.hackathon.model;
+package br.com.hackathon.domain;
+
+import lombok.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 
 import static br.com.hackathon.constants.Constants.INCORRECT_EMAIL_MESSAGE;
 import static br.com.hackathon.constants.Constants.REG_EXP_EMAIL_VALIDATION;
-
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * @author alexiadorneles
@@ -42,10 +30,6 @@ public class User implements Serializable {
     @Column(name = "ID_USUARIO", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @NotNull
-    @Column(nullable = false)
-    private String idGoogle;
 
     @NotNull
     @Column(nullable = false)
