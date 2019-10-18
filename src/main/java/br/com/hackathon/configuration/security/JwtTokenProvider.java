@@ -34,7 +34,7 @@ class JwtTokenProvider {
 				.setIssuedAt(now)
 				.setExpiration(expiryDate)
 				.signWith(SignatureAlgorithm.HS512, JWT_KEY)
-				.claim("idUsuario", userPrincipal.getId())
+				.claim("userId", userPrincipal.getId())
 				.compact();
 	}
 

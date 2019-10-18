@@ -1,15 +1,13 @@
 package br.com.hackathon.controller;
 
-import br.com.hackathon.dto.usuario.UsuarioCadastroDto;
-import br.com.hackathon.model.Usuario;
-import br.com.hackathon.service.usuario.UsuarioService;
+import br.com.hackathon.dto.user.CreateUserDto;
+import br.com.hackathon.domain.User;
+import br.com.hackathon.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import br.com.hackathon.service.usuario.UsuarioServiceImpl;
 
 /**
  * @author alexiadorneles
@@ -17,15 +15,15 @@ import br.com.hackathon.service.usuario.UsuarioServiceImpl;
  */
 
 @RestController
-@RequestMapping("/usuario")
-public class UsuarioSecuredController {
+@RequestMapping("/user")
+public class UserSecuredController {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private UserService userService;
 
     @PostMapping
-    public Usuario exemploSave(@RequestBody UsuarioCadastroDto usuario) {
-        return usuarioService.save(usuario);
+    public User exemploSave(@RequestBody CreateUserDto userId) {
+        return userService.save(userId);
     }
 
 }

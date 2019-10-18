@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.hackathon.configuration.security.AuthenticationService;
 import br.com.hackathon.dto.login.LoginResponseDto;
-import br.com.hackathon.dto.usuario.UsuarioCadastroDto;
+import br.com.hackathon.dto.user.CreateUserDto;
 
 @RestController
 @RequestMapping("/public/login")
@@ -27,7 +27,7 @@ public class LoginController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.OK)
-	public LoginResponseDto login(@RequestBody UsuarioCadastroDto cadastroDto) {
+	public LoginResponseDto login(@RequestBody CreateUserDto cadastroDto) {
 		return this.authenticationService.authenticate(cadastroDto);
 	}
 

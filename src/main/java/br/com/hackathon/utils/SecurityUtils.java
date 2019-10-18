@@ -1,12 +1,12 @@
 package br.com.hackathon.utils;
 
-import static br.com.hackathon.constants.Constants.FORBIDDEN_ACTION;
-import static br.com.hackathon.constants.Constants.INVALID_DATA;
+import br.com.hackathon.exception.HackathonException;
+import br.com.hackathon.domain.User;
 
 import java.util.Objects;
 
-import br.com.hackathon.exception.HackathonException;
-import br.com.hackathon.model.Usuario;
+import static br.com.hackathon.constants.Constants.FORBIDDEN_ACTION;
+import static br.com.hackathon.constants.Constants.INVALID_DATA;
 
 /**
  * @author alexiadorneles
@@ -14,12 +14,12 @@ import br.com.hackathon.model.Usuario;
  */
 
 public class SecurityUtils {
-    public static void verifyPrincipal(Usuario principal, Usuario owner) {
+    public static void verifyPrincipal(User principal, User owner) {
         if (Objects.isNull(principal) || Objects.isNull(owner)) {
             throw new RuntimeException(INVALID_DATA);
         }
 
-        if (!principal.getIdUsuario().equals(owner.getIdUsuario())) {
+        if (!principal.getId().equals(owner.getId())) {
             throw new HackathonException(FORBIDDEN_ACTION);
         }
     }
