@@ -1,7 +1,7 @@
 package br.com.hackathon.configuration.security;
 
 import br.com.hackathon.dto.login.LoginResponseDto;
-import br.com.hackathon.dto.usuario.UsuarioCadastroDto;
+import br.com.hackathon.dto.user.CreateUserDto;
 import br.com.hackathon.domain.User;
 import br.com.hackathon.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class AuthenticationService {
     @Inject
     private UserService userService;
 
-    public LoginResponseDto authenticate(UsuarioCadastroDto cadastroDto) {
+    public LoginResponseDto authenticate(CreateUserDto cadastroDto) {
         User user = userService.findByEmail(cadastroDto.getEmail());
         if (Objects.isNull(user)) user = userService.save(cadastroDto);
 
@@ -47,11 +47,11 @@ public class AuthenticationService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-        Long idUsuario = userPrincipal.getId();
+        Long userId = userPrincipal.getId();
 
         return LoginResponseDto.builder()
                 .accessToken(HEADER_PREFIX + this.tokenProvider.generateToken(authentication))
-                .idUsuario(idUsuario)
+                .userId(userId)
                 .build();
     }
 }

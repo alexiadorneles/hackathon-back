@@ -1,6 +1,6 @@
 package br.com.hackathon.controller;
 
-import br.com.hackathon.dto.usuario.UsuarioCadastroDto;
+import br.com.hackathon.dto.user.CreateUserDto;
 import br.com.hackathon.domain.User;
 import br.com.hackathon.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
-public class UsuarioSecuredController {
+public class UserSecuredController {
 
     @Autowired
     private UserService userService;
 
     @PostMapping
-    public User exemploSave(@RequestBody UsuarioCadastroDto usuario) {
-        return userService.save(usuario);
+    public User exemploSave(@RequestBody CreateUserDto userId) {
+        return userService.save(userId);
     }
 
 }

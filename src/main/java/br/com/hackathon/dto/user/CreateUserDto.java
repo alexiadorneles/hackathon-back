@@ -1,4 +1,4 @@
-package br.com.hackathon.dto.usuario;
+package br.com.hackathon.dto.user;
 
 import lombok.*;
 
@@ -12,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UsuarioCadastroDto {
+public class CreateUserDto {
 
 	private String photo;
 

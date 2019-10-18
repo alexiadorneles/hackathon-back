@@ -1,6 +1,6 @@
-package br.com.hackathon.mapper.usuario;
+package br.com.hackathon.mapper.user;
 
-import br.com.hackathon.dto.usuario.UsuarioCadastroDto;
+import br.com.hackathon.dto.user.CreateUserDto;
 import br.com.hackathon.domain.User;
 
 /**
@@ -8,11 +8,11 @@ import br.com.hackathon.domain.User;
  * @email alexiadorneles02@gmail.com
  */
 
-public class UsuarioMapper {
-	private UsuarioMapper() {
+public class UserMapper {
+	private UserMapper() {
 	}
 
-	public static User fromCadastroDtoToModel(UsuarioCadastroDto cadastroDto) {
+	public static User fromCadastroDtoToModel(CreateUserDto cadastroDto) {
 		return User.builder()
 				.email(cadastroDto.getEmail())
 				.lastName(cadastroDto.getLastName())

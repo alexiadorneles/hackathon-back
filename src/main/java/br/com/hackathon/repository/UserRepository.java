@@ -11,7 +11,7 @@ import java.util.Optional;
  * @email alexiadorneles02@gmail.com
  */
 
-public interface UsuarioRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
 	Optional<User> findById(Long id);
 

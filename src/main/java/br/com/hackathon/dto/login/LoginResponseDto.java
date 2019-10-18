@@ -12,5 +12,5 @@ import lombok.Data;
 @Builder
 public class LoginResponseDto {
 	private final String accessToken;
-	private final Long idUsuario;
+	private final Long userId;
 }

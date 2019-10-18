@@ -1,14 +1,14 @@
 package br.com.hackathon.service.user;
 
-import br.com.hackathon.dto.usuario.UsuarioCadastroDto;
+import br.com.hackathon.dto.user.CreateUserDto;
 import br.com.hackathon.domain.User;
 
 import java.util.List;
 
 public interface UserService {
-    User save(UsuarioCadastroDto usuarioCadastroDto);
+    User save(CreateUserDto createUserDto);
 
-    User load(Long idUsuario);
+    User load(Long userId);
 
     User findByEmail(String email);
 
@@ -16,5 +16,5 @@ public interface UserService {
 
     long count();
 
-    void delete(Long idUsuario);
+    void delete(Long userId);
 }
