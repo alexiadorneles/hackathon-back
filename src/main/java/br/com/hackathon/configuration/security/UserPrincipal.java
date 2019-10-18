@@ -1,20 +1,14 @@
 package br.com.hackathon.configuration.security;
 
+import br.com.hackathon.model.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import br.com.hackathon.model.Usuario;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * @author alexiadorneles
@@ -32,41 +26,38 @@ public class UserPrincipal implements UserDetails {
 
 	private Long id;
 
-	private String nmUsuario;
+	private String firstName;
 
-	private String dsSobrenome;
+	private String lastName;
 
-	private String dsEmail;
-
-	private String dsLogin;
+	private String email;
 
 	@JsonIgnore
-	private String dsSenha;
+	private String password;
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	static UserPrincipal create(Usuario usuario) {
+	static UserPrincipal create(User user) {
 		List<GrantedAuthority> authorities = Collections.emptyList();
 
 		return UserPrincipal.builder()
-				.id(usuario.getIdUsuario())
-				.nmUsuario(usuario.getNmUsuario())
-				.dsSobrenome(usuario.getDsSobrenome())
-				.dsEmail(usuario.getDsEmail())
-				.dsLogin(usuario.getDsLogin())
-				.dsSenha(usuario.getDsSenha())
+				.id(user.getId())
+				.firstName(user.getFirstName())
+				.lastName(user.getLastName())
+				.email(user.getEmail())
+				.password(user.getPassword())
 				.authorities(authorities)
 				.build();
 	}
 
 	@Override
 	public String getUsername() {
-		return this.dsLogin;
+		return this.email;
 	}
 
 	@Override
 	public String getPassword() {
-		return this.dsSenha;
+		return this.password;
 	}
 
 	@Override

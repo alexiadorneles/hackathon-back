@@ -34,23 +34,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@Table(
-        uniqueConstraints = {
-                @UniqueConstraint(name = "UK_ID_USUARIO", columnNames = "ID_USUARIO"),
-                @UniqueConstraint(name = "UK_DS_EMAIL", columnNames = "DS_EMAIL"),
-                @UniqueConstraint(name = "UK_DS_LOGIN", columnNames = "DS_LOGIN")
-        },
-        indexes = {
-                @Index(name = "IX_PK_USUARIO", columnList = "ID_USUARIO"),
-        }
-)
-public class Usuario implements Serializable {
+@Table(name = "\"user\"")
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "ID_USUARIO", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idUsuario;
+    private Long id;
 
     @NotNull
     @Column(nullable = false)
@@ -58,34 +49,25 @@ public class Usuario implements Serializable {
 
     @NotNull
     @Column(nullable = false)
-    private String nmUsuario;
+    private String firstName;
 
     @NotNull
     @Column(nullable = false)
-    private String dsSobrenome;
+    private String lastName;
 
     @Pattern(regexp = REG_EXP_EMAIL_VALIDATION, message = INCORRECT_EMAIL_MESSAGE)
     @NotNull
     @Column(name = "DS_EMAIL", nullable = false)
-    private String dsEmail;
+    private String email;
 
-    @NotNull
-    @Column(name = "DS_LOGIN", nullable = false)
-    private String dsLogin;
+    private String photo;
 
     @NotNull
     @Column(nullable = false)
-    private String dsSenha;
-
-    @Column
-    private String dsFoto;
-
-    public String getFullName() {
-        return String.format("%s %s", this.getNmUsuario(), this.getDsSobrenome());
-    }
+    private String password;
 
     public void encryptPassword() {
-        this.dsSenha = new BCryptPasswordEncoder().encode(this.dsSenha);
+        this.password = new BCryptPasswordEncoder().encode(this.password);
     }
 
 }

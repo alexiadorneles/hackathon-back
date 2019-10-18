@@ -1,7 +1,7 @@
 package br.com.hackathon.mapper.usuario;
 
 import br.com.hackathon.dto.usuario.UsuarioCadastroDto;
-import br.com.hackathon.model.Usuario;
+import br.com.hackathon.model.User;
 
 /**
  * @author alexiadorneles
@@ -12,15 +12,13 @@ public class UsuarioMapper {
 	private UsuarioMapper() {
 	}
 
-	public static Usuario fromCadastroDtoToModel(UsuarioCadastroDto cadastroDto) {
-		return Usuario.builder()
-				.dsEmail(cadastroDto.getEmail())
-				.dsLogin(cadastroDto.getEmail())
-				.dsSobrenome(cadastroDto.getLastName())
-				.nmUsuario(cadastroDto.getFirstName())
-				.dsFoto(cadastroDto.getPhoto())
+	public static User fromCadastroDtoToModel(UsuarioCadastroDto cadastroDto) {
+		return User.builder()
+				.email(cadastroDto.getEmail())
+				.lastName(cadastroDto.getLastName())
+				.firstName(cadastroDto.getFirstName())
 				.idGoogle(cadastroDto.getGoogleId())
-				.dsSenha(cadastroDto.generatePassword())
+				.password(cadastroDto.generatePassword())
 				.build();
 	}
 

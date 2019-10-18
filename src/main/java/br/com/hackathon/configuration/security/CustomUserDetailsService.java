@@ -1,17 +1,17 @@
 package br.com.hackathon.configuration.security;
 
-import static br.com.hackathon.constants.Constants.USER_NOT_FOUND;
-
-import java.util.Optional;
-import java.util.function.Supplier;
+import br.com.hackathon.model.User;
+import br.com.hackathon.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.hackathon.model.Usuario;
-import br.com.hackathon.repository.UsuarioRepository;
+import java.util.Optional;
+import java.util.function.Supplier;
+
+import static br.com.hackathon.constants.Constants.USER_NOT_FOUND;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -21,18 +21,18 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) {
-		Usuario usuario = this.getUser(() -> this.usuarioRepository.findByDsLogin(username));
+		User usuario = this.getUser(() -> this.usuarioRepository.findByEmail(username));
 		this.usuarioRepository.save(usuario);
 		return UserPrincipal.create(usuario);
 	}
 
 	UserDetails loadUserById(Long id) {
-		Usuario usuario = this.getUser(() -> this.usuarioRepository.findByIdUsuario(id));
+		User usuario = this.getUser(() -> this.usuarioRepository.findById(id));
 		this.usuarioRepository.save(usuario);
 		return UserPrincipal.create(usuario);
 	}
 
-	private Usuario getUser(Supplier<Optional<Usuario>> supplier) {
+	private User getUser(Supplier<Optional<User>> supplier) {
 		return supplier.get().orElseThrow(() ->
 				new UsernameNotFoundException(USER_NOT_FOUND)
 		);

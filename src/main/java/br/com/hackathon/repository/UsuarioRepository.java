@@ -1,25 +1,23 @@
 package br.com.hackathon.repository;
 
-import java.util.List;
-import java.util.Optional;
+import br.com.hackathon.model.User;
 import org.springframework.data.repository.CrudRepository;
 
-import br.com.hackathon.model.Usuario;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author alexiadorneles
  * @email alexiadorneles02@gmail.com
  */
 
-public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
+public interface UsuarioRepository extends CrudRepository<User, Long> {
 
-	Optional<Usuario> findByDsLogin(String dsLogin);
+	Optional<User> findById(Long id);
 
-	Optional<Usuario> findByIdUsuario(Long idUsuario);
-
-	List<Usuario> findByNmUsuario(String nmUsuario);
+	Optional<User> findByEmail(String email);
 
 	@Override
-	List<Usuario> findAll();
+	List<User> findAll();
 
 }

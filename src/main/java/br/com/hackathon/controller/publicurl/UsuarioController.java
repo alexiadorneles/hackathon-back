@@ -1,19 +1,11 @@
 package br.com.hackathon.controller.publicurl;
 
-import java.util.List;
-
-import br.com.hackathon.service.usuario.UsuarioService;
+import br.com.hackathon.model.User;
+import br.com.hackathon.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import br.com.hackathon.model.Usuario;
-import br.com.hackathon.service.usuario.UsuarioServiceImpl;
+import java.util.List;
 
 /**
  * @author alexiadorneles
@@ -21,30 +13,30 @@ import br.com.hackathon.service.usuario.UsuarioServiceImpl;
  */
 
 @RestController
-@RequestMapping("/public/usuario")
+@RequestMapping("/public/user")
 public class UsuarioController {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private UserService userService;
 
     @PostMapping("/find-by-name")
-    public Iterable<Usuario> findByName(@RequestBody String name) {
-        return this.usuarioService.findByName(name);
+    public User findByName(@RequestBody String email) {
+        return this.userService.findByEmail(email);
     }
 
     @GetMapping("/count")
     public long count() {
-        return this.usuarioService.count();
+        return this.userService.count();
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        this.usuarioService.delete(id);
+        this.userService.delete(id);
     }
 
     @GetMapping()
-    public List<Usuario> findAll() {
-        return this.usuarioService.findAll();
+    public List<User> findAll() {
+        return this.userService.findAll();
     }
 
 }
