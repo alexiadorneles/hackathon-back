@@ -27,7 +27,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "ID_USUARIO", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -41,7 +41,7 @@ public class User implements Serializable {
 
     @Pattern(regexp = REG_EXP_EMAIL_VALIDATION, message = INCORRECT_EMAIL_MESSAGE)
     @NotNull
-    @Column(name = "DS_EMAIL", nullable = false)
+    @Column(nullable = false)
     private String email;
 
     private String photo;
