@@ -1,9 +1,9 @@
 package br.com.hackathon.controller.campaign;
 
 import br.com.hackathon.domain.entity.CampaignEntity;
-import br.com.hackathon.domain.entity.ItemEntity;
+import br.com.hackathon.dto.campaignitem.CampaignItemDto;
 import br.com.hackathon.service.campaign.CampaignService;
-import br.com.hackathon.service.item.ItemService;
+import br.com.hackathon.service.campaignitem.CampaignItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +17,7 @@ public class CampaignPublicController {
 	private CampaignService campaignService;
 
 	@Autowired
-	private ItemService itemService;
+	private CampaignItemService campaignItemService;
 
 	@GetMapping
 	public List<CampaignEntity> findAll() {
@@ -30,8 +30,8 @@ public class CampaignPublicController {
 	}
 
 	@GetMapping("/id/{id}/items")
-	public List<ItemEntity> findItemsById(@PathVariable("id") Long id) {
-		return itemService.findByCampaignId(id);
+	public List<CampaignItemDto> findItemsById(@PathVariable("id") Long id) {
+		return campaignItemService.findAllByCampaignId(id);
 	}
 
 	@PostMapping
@@ -43,6 +43,4 @@ public class CampaignPublicController {
 	public CampaignEntity update(@RequestBody CampaignEntity campaignEntity) {
 		return this.campaignService.update(campaignEntity);
 	}
-
-
 }
