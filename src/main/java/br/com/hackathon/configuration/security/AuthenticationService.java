@@ -1,9 +1,9 @@
 package br.com.hackathon.configuration.security;
 
 import br.com.hackathon.dto.login.LoginResponseDto;
-import br.com.hackathon.dto.user.CreateUserDto;
-import br.com.hackathon.domain.User;
-import br.com.hackathon.service.user.UserService;
+import br.com.hackathon.dto.usuario.UsuarioCadastroDto;
+import br.com.hackathon.model.Usuario;
+import br.com.hackathon.service.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,7 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
 import java.util.Objects;
 
 import static br.com.hackathon.constants.Constants.HEADER_PREFIX;
@@ -24,34 +23,34 @@ import static br.com.hackathon.constants.Constants.HEADER_PREFIX;
 @Service
 public class AuthenticationService {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtTokenProvider tokenProvider;
+	@Autowired
+	private JwtTokenProvider tokenProvider;
 
-    @Inject
-    private UserService userService;
+	@Autowired
+	private UsuarioService usuarioService;
 
-    public LoginResponseDto authenticate(CreateUserDto cadastroDto) {
-        User user = userService.findByEmail(cadastroDto.getEmail());
-        if (Objects.isNull(user)) user = userService.save(cadastroDto);
+	public LoginResponseDto authenticate(UsuarioCadastroDto cadastroDto) {
+		Usuario usuario = usuarioService.findByDsLogin(cadastroDto.getEmail());
+		if (Objects.isNull(usuario)) usuario = usuarioService.save(cadastroDto);
 
-        Authentication authentication = this.authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        user.getEmail(),
-                        cadastroDto.getPassword()
-                )
-        );
+		Authentication authentication = this.authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(
+						usuario.getDsEmail(),
+						cadastroDto.generatePassword()
+				)
+		);
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-        Long userId = userPrincipal.getId();
+		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+		Long idUsuario = userPrincipal.getId();
 
-        return LoginResponseDto.builder()
-                .accessToken(HEADER_PREFIX + this.tokenProvider.generateToken(authentication))
-                .userId(userId)
-                .build();
-    }
+		return LoginResponseDto.builder()
+				.accessToken(HEADER_PREFIX + this.tokenProvider.generateToken(authentication))
+				.idUsuario(idUsuario)
+				.build();
+	}
 }

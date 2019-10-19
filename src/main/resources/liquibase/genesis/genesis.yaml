@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: genesis-script
+      author: eduardothums
+      runInTransaction: false
+      runOnChange: true
+      changes:
+        - sqlFile:
+            encoding: utf8
+            endDelimiter: \nGO
+            path: genesis-script.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
