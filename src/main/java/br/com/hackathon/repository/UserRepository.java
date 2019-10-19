@@ -23,7 +23,8 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 			"FROM \"user\" u INNER JOIN donation d " +
 			"ON u.id = d.user_id " +
 			"WHERE d.status = 'FINISHED' " +
-			"ORDER BY d.created_date DESC",
+			"ORDER BY d.created_date DESC " +
+			"LIMIT 10",
 			nativeQuery = true)
 	List<RankUserDtoProjection> listUsersRank();
 }
