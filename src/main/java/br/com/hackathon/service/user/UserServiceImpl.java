@@ -1,10 +1,8 @@
 package br.com.hackathon.service.user;
 
-import br.com.hackathon.domain.User;
-import br.com.hackathon.dto.user.CreateUserDto;
+import br.com.hackathon.domain.entity.UserEntity;
+import br.com.hackathon.service.GenericCRUDService;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author alexiadorneles
@@ -12,31 +10,7 @@ import java.util.List;
  */
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends GenericCRUDService<UserEntity, Long> implements UserService {
 
 
-	@Override
-	public User save(CreateUserDto createUserDto) {
-		return null;
-	}
-
-	@Override
-	public User load(Long userId) {
-		return null;
-	}
-
-	@Override
-	public User findByEmail(String email) {
-		return null;
-	}
-
-	@Override
-	public List<User> findAll() {
-		return null;
-	}
-
-	@Override
-	public long count() {
-		return 0;
-	}
 }
