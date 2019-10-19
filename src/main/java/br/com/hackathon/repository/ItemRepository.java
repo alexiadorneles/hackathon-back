@@ -2,7 +2,6 @@ package br.com.hackathon.repository;
 
 import br.com.hackathon.domain.entity.ItemEntity;
 import org.springframework.data.repository.CrudRepository;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -12,4 +11,5 @@ public interface ItemRepository extends CrudRepository<ItemEntity, Long> {
 
     @Override
     List<ItemEntity> findAll();
+ 
 }
