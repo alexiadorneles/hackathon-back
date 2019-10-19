@@ -1,5 +1,8 @@
 package br.com.hackathon.domain.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 /**
@@ -7,6 +10,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "item")
+@AllArgsConstructor
+@NoArgsConstructor
 public class ItemEntity {
 
 	@Id
@@ -14,7 +19,7 @@ public class ItemEntity {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_id_seq")
 	private Long id;
 
-	private String name;
+	private String title;
 
 	private String description;
 }
