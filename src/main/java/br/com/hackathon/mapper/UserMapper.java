@@ -36,7 +36,7 @@ public class UserMapper {
 		userEntity.setPassword(createUserDto.getPassword());
 		userEntity.setFirstName(createUserDto.getFirstName());
 		userEntity.setLastName(createUserDto.getLastName());
-		userEntity.setImageUrl(createUserDto.getImageUrl());
+		userEntity.setImageUrl("https://scontent.fpoa10-1.fna.fbcdn.net/v/t1.0-9/72984156_1125137077689442_1938343638610214912_n.jpg?_nc_cat=105&_nc_oc=AQkPRGeLeFloc_qFxTu448F9V7XxIVLz56SqulfLB9alWLk8KS_8inTqg19cua60l1U&_nc_ht=scontent.fpoa10-1.fna&oh=2d0859b7b70bbd749cd62ed7924dceea&oe=5E6260FF");
 		userEntity.setCpf(createUserDto.getCpf());
 		userEntity.setCnpj(createUserDto.getCnpj());
 		userEntity.setLatitude(createUserDto.getLatitude());

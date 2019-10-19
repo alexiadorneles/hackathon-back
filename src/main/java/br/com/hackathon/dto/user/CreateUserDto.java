@@ -32,10 +32,6 @@ public class CreateUserDto {
 	@Size(max = 512)
 	private String lastName;
 
-	@NotBlank
-	@Size(max = 2048)
-	private String imageUrl;
-
 	@Size(max = 11)
 	private String cpf;
 
