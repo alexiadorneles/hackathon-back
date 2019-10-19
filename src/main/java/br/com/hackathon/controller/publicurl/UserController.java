@@ -16,27 +16,22 @@ import java.util.List;
 @RequestMapping("/public/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @PostMapping("/find-by-name")
-    public User findByName(@RequestBody String email) {
-        return this.userService.findByEmail(email);
-    }
+	@PostMapping("/find-by-name")
+	public User findByName(@RequestBody String email) {
+		return this.userService.findByEmail(email);
+	}
 
-    @GetMapping("/count")
-    public long count() {
-        return this.userService.count();
-    }
+	@GetMapping("/count")
+	public long count() {
+		return this.userService.count();
+	}
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        this.userService.delete(id);
-    }
-
-    @GetMapping()
-    public List<User> findAll() {
-        return this.userService.findAll();
-    }
+	@GetMapping()
+	public List<User> findAll() {
+		return this.userService.findAll();
+	}
 
 }
