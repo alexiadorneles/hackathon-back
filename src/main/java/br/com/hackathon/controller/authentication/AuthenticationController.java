@@ -1,4 +1,4 @@
-package br.com.hackathon.controller.publicurl;
+package br.com.hackathon.controller.authentication;
 
 import br.com.hackathon.configuration.security.AuthenticationService;
 import br.com.hackathon.dto.login.LoginRequestDto;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/public/login")
-public class LoginController {
+public class AuthenticationController {
 
 	@Autowired
 	private AuthenticationService authenticationService;

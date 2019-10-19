@@ -1,18 +1,10 @@
 package br.com.hackathon.service.user;
 
-import br.com.hackathon.domain.User;
-import br.com.hackathon.dto.user.CreateUserDto;
+import br.com.hackathon.domain.entity.UserEntity;
+import br.com.hackathon.dto.user.RankListUserDto;
+import br.com.hackathon.service.CRUDService;
 
-import java.util.List;
+public interface UserService extends CRUDService<UserEntity, Long> {
 
-public interface UserService {
-	User save(CreateUserDto createUserDto);
-
-	User load(Long userId);
-
-	User findByEmail(String email);
-
-	List<User> findAll();
-
-	long count();
+	RankListUserDto listUsersRank();
 }

@@ -1,10 +1,16 @@
 package br.com.hackathon.service.user;
 
-import br.com.hackathon.domain.User;
-import br.com.hackathon.dto.user.CreateUserDto;
+import br.com.hackathon.domain.entity.UserEntity;
+import br.com.hackathon.dto.user.RankListUserDto;
+import br.com.hackathon.dto.user.RankUserDto;
+import br.com.hackathon.mapper.UserMapper;
+import br.com.hackathon.repository.UserRepository;
+import br.com.hackathon.service.GenericCRUDService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author alexiadorneles
@@ -12,31 +18,32 @@ import java.util.List;
  */
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends GenericCRUDService<UserEntity, Long> implements UserService {
 
+	@Autowired
+	private UserRepository userRepository;
 
-	@Override
-	public User save(CreateUserDto createUserDto) {
-		return null;
-	}
-
-	@Override
-	public User load(Long userId) {
-		return null;
-	}
+	@Autowired
+	private UserMapper userMapper;
 
 	@Override
-	public User findByEmail(String email) {
-		return null;
-	}
+	public RankListUserDto listUsersRank() {
+		final List<RankUserDto> rankUserDtos = userMapper.toRankUserDtos(userRepository.listUsersRank());
 
-	@Override
-	public List<User> findAll() {
-		return null;
-	}
+		final List<RankUserDto> volunteers = rankUserDtos
+				.stream()
+				.filter(rankUserDto -> rankUserDto.getCpf() != null)
+				.collect(Collectors.toList());
 
-	@Override
-	public long count() {
-		return 0;
+		final List<RankUserDto> companies = rankUserDtos
+				.stream()
+				.filter(rankUserDto -> rankUserDto.getCnpj() != null)
+				.collect(Collectors.toList());
+
+		return RankListUserDto
+				.builder()
+				.volunteers(volunteers)
+				.companies(companies)
+				.build();
 	}
 }
