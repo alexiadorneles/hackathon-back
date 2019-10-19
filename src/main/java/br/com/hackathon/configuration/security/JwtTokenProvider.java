@@ -1,19 +1,19 @@
 package br.com.hackathon.configuration.security;
 
-import static br.com.hackathon.configuration.security.Credentials.JWT_KEY;
-import static br.com.hackathon.constants.Constants.JWT_EXPIRATION;
-import static java.lang.Long.parseLong;
-import static java.util.Optional.empty;
-
-import java.util.Date;
-import java.util.Optional;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
+
+import java.util.Date;
+import java.util.Optional;
+
+import static br.com.hackathon.configuration.security.Credentials.JWT_KEY;
+import static br.com.hackathon.constants.Constants.JWT_EXPIRATION;
+import static java.lang.Long.parseLong;
+import static java.util.Optional.empty;
 
 /**
  * @author alexiadorneles
