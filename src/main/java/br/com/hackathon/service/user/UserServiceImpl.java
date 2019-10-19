@@ -3,6 +3,7 @@ package br.com.hackathon.service.user;
 import br.com.hackathon.domain.entity.UserEntity;
 import br.com.hackathon.dto.user.RankListUserDto;
 import br.com.hackathon.dto.user.RankUserDto;
+import br.com.hackathon.mapper.UserMapper;
 import br.com.hackathon.repository.UserRepository;
 import br.com.hackathon.service.GenericCRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,12 @@ public class UserServiceImpl extends GenericCRUDService<UserEntity, Long> implem
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private UserMapper userMapper;
+
 	@Override
 	public RankListUserDto listUsersRank() {
-		userRepository.teste();
-
-		final List<RankUserDto> rankUserDtos = userRepository.listUsersRank();
+		final List<RankUserDto> rankUserDtos = userMapper.toRankUserDtos(userRepository.listUsersRank());
 
 		final List<RankUserDto> volunteers = rankUserDtos
 				.stream()
