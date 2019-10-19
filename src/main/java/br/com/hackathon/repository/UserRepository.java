@@ -20,7 +20,10 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 			"u.image_url  as imageUrl, " +
 			"u.cpf as cpf, " +
 			"u.cnpj as cnpj " +
-			"FROM \"user\" u ",
+			"FROM \"user\" u INNER JOIN donation d " +
+			"ON u.id = d.user_id " +
+			"WHERE d.status = 'FINISHED' " +
+			"ORDER BY d.created_date DESC",
 			nativeQuery = true)
 	List<RankUserDtoProjection> listUsersRank();
 }
