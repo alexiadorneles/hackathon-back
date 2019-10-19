@@ -16,6 +16,12 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
 	Optional<UserEntity> findByUsername(String username);
 
+	boolean existsByEmail(String email);
+
+	boolean existsByCpf(String cpf);
+
+	boolean existsByCnpj(String cnpj);
+
 	@Query(value = "SELECT CONCAT(u.first_name, u.last_name) as fullName, " +
 			"u.image_url  as imageUrl, " +
 			"u.cpf as cpf, " +
