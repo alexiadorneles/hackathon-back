@@ -1,14 +1,13 @@
 package br.com.hackathon.configuration.security;
 
-import br.com.hackathon.domain.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import br.com.hackathon.domain.entity.OrganizationEntity;
+import br.com.hackathon.domain.entity.UserEntity;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * @author alexiadorneles
@@ -26,27 +25,31 @@ public class UserPrincipal implements UserDetails {
 
 	private Long id;
 
-	private String firstName;
+	private String username;
 
-	private String lastName;
+	private String password;
 
 	private String email;
 
-	@JsonIgnore
-	private String password;
-
 	private Collection<? extends GrantedAuthority> authorities;
 
-	static UserPrincipal create(User user) {
-		List<GrantedAuthority> authorities = Collections.emptyList();
-
+	static UserPrincipal createFromUser(UserEntity userEntity) {
 		return UserPrincipal.builder()
-				.id(user.getId())
-				.firstName(user.getFirstName())
-				.lastName(user.getLastName())
-				.email(user.getEmail())
-				.password(user.getPassword())
-				.authorities(authorities)
+				.id(userEntity.getId())
+				.username(userEntity.getUsername())
+				.email(userEntity.getEmail())
+				.password(userEntity.getPassword())
+				.authorities(Collections.emptyList())
+				.build();
+	}
+
+	static UserPrincipal createFromOrganization(OrganizationEntity organizationEntity) {
+		return UserPrincipal.builder()
+				.id(organizationEntity.getId())
+				.username(organizationEntity.getUsername())
+				.email(organizationEntity.getEmail())
+				.password(organizationEntity.getPassword())
+				.authorities(Collections.emptyList())
 				.build();
 	}
 

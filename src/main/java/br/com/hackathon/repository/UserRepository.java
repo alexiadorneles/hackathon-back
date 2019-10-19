@@ -1,9 +1,8 @@
 package br.com.hackathon.repository;
 
-import br.com.hackathon.domain.User;
+import br.com.hackathon.domain.entity.UserEntity;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -11,12 +10,7 @@ import java.util.Optional;
  * @email alexiadorneles02@gmail.com
  */
 
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
-	Optional<User> findById(Long id);
-
-	Optional<User> findByEmail(String email);
-
-	@Override
-	List<User> findAll();
+	Optional<UserEntity> findByUsername(String username);
 }

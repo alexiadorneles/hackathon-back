@@ -1,12 +1,19 @@
 package br.com.hackathon.domain.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 /**
  * @author eduardo.thums
  */
+@Getter
 @Entity
 @Table(name = "organization")
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrganizationEntity {
 
 	@Id

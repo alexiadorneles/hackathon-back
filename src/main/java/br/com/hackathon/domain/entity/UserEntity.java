@@ -1,10 +1,13 @@
 package br.com.hackathon.domain.entity;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
 /**
  * @author eduardo.thums
  */
+@Getter
 @Entity
 @Table(name = "\"user\"")
 public class UserEntity {

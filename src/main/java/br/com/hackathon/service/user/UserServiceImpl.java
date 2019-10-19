@@ -2,9 +2,6 @@ package br.com.hackathon.service.user;
 
 import br.com.hackathon.domain.User;
 import br.com.hackathon.dto.user.CreateUserDto;
-import br.com.hackathon.mapper.user.UserMapper;
-import br.com.hackathon.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,28 +14,29 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private UserRepository repository;
 
+	@Override
 	public User save(CreateUserDto createUserDto) {
-		User model = UserMapper.fromCadastroDtoToModel(createUserDto);
-		model.encryptPassword();
-		return repository.save(model);
+		return null;
 	}
 
-	public User load(Long idUser) {
-		return this.repository.findById(idUser).get();
+	@Override
+	public User load(Long userId) {
+		return null;
 	}
 
-	public User findByEmail(String dsLogin) {
-		return repository.findByEmail(dsLogin).orElse(null);
+	@Override
+	public User findByEmail(String email) {
+		return null;
 	}
 
+	@Override
 	public List<User> findAll() {
-		return this.repository.findAll();
+		return null;
 	}
 
+	@Override
 	public long count() {
-		return this.repository.count();
+		return 0;
 	}
 }
