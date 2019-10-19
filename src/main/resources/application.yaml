@@ -1,39 +1,14 @@
 spring:
-  jackson:
-    serialization:
-      write_dates_as_timestamps: false
-      default-property-inclusion: non_null
-  data:
-    rest:
-      baseUri: /api
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/hackathon?useSSL=false
-    username: root
-    password:
-server:
-  port: 30003
-  context-path: /hackathon
-# -------------------
-# POSTGRESQL - LOCAL
-# -------------------
-#spring.jpa.database=POSTGRESQL
-#spring.datasource.platform=postgres
-#spring.jpa.show-sql=true
-#spring.database.driverClassName=org.postgresql.Driver
-#spring.datasource.url=jdbc:postgresql://localhost:5433/postgres
-#spring.datasource.username=postgres
-#spring.datasource.password=postgres
-# -------------------
-# POSTGRESQL - HEROKU
-# -------------------
-#spring.jpa.database=POSTGRESQL
-#spring.datasource.platform=postgres
-#spring.jpa.show-sql=true
-#spring.database.driverClassName=org.postgresql.Driver
-#spring.datasource.url=jdbc:postgresql:ec2-54-235-242-63.compute-1.amazonaws.com:5432/d8h5m7pupok9o5?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
-#spring.datasource.username=jdnmjgrxvawxhp
-#spring.datasource.password=8ee789a73c581b89b9b52e6a89aaf4200e2cca82f158501f13637c8d11dd2726
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/hackatonifcode2019
+    username: hackatonifcode2019
+    password: hackatonifcode2019
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  liquibase:
+    change-log: classpath:/liquibase/liquibase-changelog.yaml

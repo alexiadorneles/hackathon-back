@@ -1,10 +1,9 @@
 package br.com.hackathon.service.user;
 
+import br.com.hackathon.domain.User;
 import br.com.hackathon.dto.user.CreateUserDto;
 import br.com.hackathon.mapper.user.UserMapper;
-import br.com.hackathon.domain.User;
 import br.com.hackathon.repository.UserRepository;
-import br.com.hackathon.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ import java.util.List;
  */
 
 @Service
-public class UserServiceImpl extends AbstractService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository repository;
@@ -28,7 +27,7 @@ public class UserServiceImpl extends AbstractService {
 	}
 
 	public User load(Long idUser) {
-		return this.repository.findOne(idUser);
+		return this.repository.findById(idUser).get();
 	}
 
 	public User findByEmail(String dsLogin) {
@@ -42,9 +41,4 @@ public class UserServiceImpl extends AbstractService {
 	public long count() {
 		return this.repository.count();
 	}
-
-	public void delete(Long idUser) {
-		this.repository.delete(idUser);
-	}
-
 }
