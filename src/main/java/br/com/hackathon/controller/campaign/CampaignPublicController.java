@@ -1,7 +1,9 @@
 package br.com.hackathon.controller.campaign;
 
 import br.com.hackathon.domain.entity.CampaignEntity;
+import br.com.hackathon.domain.entity.ItemEntity;
 import br.com.hackathon.service.campaign.CampaignService;
+import br.com.hackathon.service.item.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +12,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/public/campaign")
 public class CampaignPublicController {
-	@Autowired
-	CampaignService campaignService;
 
-	@GetMapping()
+	@Autowired
+	private CampaignService campaignService;
+
+	@Autowired
+	private ItemService itemService;
+
+	@GetMapping
 	public List<CampaignEntity> findAll() {
 		return this.campaignService.findAll();
 	}
@@ -21,6 +27,11 @@ public class CampaignPublicController {
 	@GetMapping("/id/{id}")
 	public CampaignEntity findById(@PathVariable("id") Long id) {
 		return this.campaignService.findById(id);
+	}
+
+	@GetMapping("/id/{id}/items")
+	public List<ItemEntity> findItemsById(@PathVariable("id") Long id) {
+		return itemService.findByCampaignId(id);
 	}
 
 	@PostMapping
@@ -32,5 +43,6 @@ public class CampaignPublicController {
 	public CampaignEntity update(@RequestBody CampaignEntity campaignEntity) {
 		return this.campaignService.update(campaignEntity);
 	}
+
 
 }
