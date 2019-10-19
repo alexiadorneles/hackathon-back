@@ -16,7 +16,7 @@ public class GenericCRUDService<T, ID> implements CRUDService<T, ID>{
     }
 
     public T findById(ID id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(id).get();
     }
 
     public T update(T entity) {
