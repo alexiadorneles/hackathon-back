@@ -1,16 +1,20 @@
 package br.com.hackathon.domain.entity;
 
-import lombok.Getter;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author eduardo.thums
  */
-@Getter
 @Entity
 @Table(name = "\"user\"")
-public class UserEntity {
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class UserEntity implements Serializable {
 
 	@Id
 	@SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)

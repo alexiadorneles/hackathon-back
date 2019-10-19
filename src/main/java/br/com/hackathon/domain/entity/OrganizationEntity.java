@@ -1,20 +1,21 @@
 package br.com.hackathon.domain.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author eduardo.thums
  */
-@Getter
 @Entity
 @Table(name = "organization")
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrganizationEntity {
+@Data
+public class OrganizationEntity implements Serializable {
 
 	@Id
 	@SequenceGenerator(name = "organization_id_seq", sequenceName = "organization_id_seq", allocationSize = 1)

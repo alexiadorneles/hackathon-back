@@ -1,6 +1,11 @@
 package br.com.hackathon.domain.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -8,7 +13,10 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "event")
-public class EventEntity {
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class EventEntity implements Serializable {
 
 	@Id
 	@SequenceGenerator(name = "event_id_seq", sequenceName = "event_id_seq", allocationSize = 1)
