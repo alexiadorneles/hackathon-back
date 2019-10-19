@@ -1,9 +1,11 @@
 package br.com.hackathon.domain.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author eduardo.thums
@@ -12,7 +14,8 @@ import javax.persistence.*;
 @Table(name = "item")
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemEntity {
+@Data
+public class ItemEntity implements Serializable {
 
 	@Id
 	@SequenceGenerator(name = "item_id_seq", sequenceName = "item_id_seq", allocationSize = 1)
