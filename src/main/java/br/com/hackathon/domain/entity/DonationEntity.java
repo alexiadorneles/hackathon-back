@@ -2,10 +2,14 @@ package br.com.hackathon.domain.entity;
 
 import br.com.hackathon.domain.status.DonateStatus;
 import br.com.hackathon.domain.type.PostgreSQLEnumType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -14,7 +18,10 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "donation")
 @TypeDef(name = "pgsql_enum", typeClass = PostgreSQLEnumType.class)
-public class DonationEntity {
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class DonationEntity implements Serializable {
 
 	@Id
 	@SequenceGenerator(name = "donation_id_seq", sequenceName = "donation_id_seq", allocationSize = 1)
