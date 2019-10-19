@@ -29,4 +29,6 @@ public class OrganizationEntity {
 	private Long latitude;
 
 	private Long longitude;
+
+	private String imageUrl;
 }
